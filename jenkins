@@ -1,0 +1,21 @@
+pipeline {
+  agent any
+  stages {
+    stage('Checkout') {
+      steps {
+        git branch: 'main', url: 'https://github.com/JothikaBcy056/aws-capstone-exam.git'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        ansiblePlaybook credentialsId: 'ansible-ssh-key',
+                        playbook: 'ansible/deploy.yml',
+                        inventory: 'ansible/hosts'
+      }
+    }
+  }
+  triggers {
+    githubPush()
+  }
+}
+ 
