@@ -1,4 +1,4 @@
-resource "aws_vpc" "streamline" {
+resource "aws_vpc" "db_name" {
   cidr_block = var.vpc_cidr
   tags = { Name = "streamline-vpc" }
 }
